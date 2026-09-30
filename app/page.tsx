@@ -1,69 +1,147 @@
-import Image from "next/image";
+import Link from "next/link";
+import type { Metadata } from "next";
+import { Container } from "@/components/layout/Container";
+import { HeroSearchField } from "@/components/search/SearchTrigger";
+import { ToolListRow } from "@/components/tools/ToolListRow";
+import { ToolIcon } from "@/components/ui/ToolIcon";
+import { categories } from "@/lib/tools/categories";
+import { getToolsByCategory, popularTools, tools } from "@/lib/tools/registry";
+import { site } from "@/lib/site";
+import { jsonLdScript } from "@/lib/seo";
 
-export default function Home() {
+export const metadata: Metadata = {
+  alternates: { canonical: "/" },
+};
+
+function itemListJsonLd() {
+  return {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    name: `${site.name} — all tools`,
+    itemListElement: tools.map((t, i) => ({
+      "@type": "ListItem",
+      position: i + 1,
+      url: `${site.url}/${t.slug}`,
+      name: t.name,
+    })),
+  };
+}
+
+const Arrow = () => (
+  <svg
+    width="16"
+    height="16"
+    viewBox="0 0 16 16"
+    fill="none"
+    aria-hidden="true"
+    className="text-faint transition-all group-hover:translate-x-0.5 group-hover:text-[var(--accent)]"
+  >
+    <path
+      d="M3.5 8h9M9 4.5 12.5 8 9 11.5"
+      stroke="currentColor"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+  </svg>
+);
+
+export default function HomePage() {
+  const popular = popularTools();
+
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert h-5 w-[100px]"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the{" "}
-            <code className="rounded bg-black/[.06] px-1.5 py-0.5 font-mono text-[0.9em] dark:bg-white/[.08]">
-              page.tsx
-            </code>{" "}
-            file.
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: jsonLdScript(itemListJsonLd()) }}
+      />
+
+      <Container className="pb-8 pt-14 sm:pt-20">
+        {/* Hero */}
+        <div className="max-w-[640px]">
+          <h1 className="text-[34px] font-semibold leading-[1.05] tracking-[-0.03em] text-ink sm:text-[46px]">
+            Small tools.
+            <br />
+            <span className="text-[var(--accent)]">Big time savings.</span>
           </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
+          <p className="mt-5 max-w-[46ch] text-[16px] leading-relaxed text-ink-soft sm:text-[17px]">
+            Fast, private utilities for the things you need to get done. No
+            accounts, no clutter — most tools run entirely in your browser.
           </p>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert h-[14px] w-4"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={14}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+
+        <div className="mt-8 max-w-[640px]">
+          <HeroSearchField />
         </div>
-      </main>
-    </div>
+
+        {/* Popular */}
+        <section className="mt-14" aria-labelledby="popular-heading">
+          <h2
+            id="popular-heading"
+            className="mb-4 text-[11px] font-semibold uppercase tracking-[0.1em] text-faint"
+          >
+            Popular
+          </h2>
+          <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+            {popular.map((tool) => (
+              <Link
+                key={tool.slug}
+                href={`/${tool.slug}`}
+                className="group flex items-center gap-3.5 rounded-[var(--radius-md)] border border-border bg-surface px-4 py-3.5 outline-none transition-all hover:border-border-strong hover:shadow-[var(--shadow-sm)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--ring)]"
+              >
+                <span className="grid h-10 w-10 shrink-0 place-items-center rounded-[var(--radius-sm)] border border-accent-line bg-accent-tint text-[var(--accent)]">
+                  <ToolIcon name={tool.icon} size={21} />
+                </span>
+                <span className="min-w-0 flex-1">
+                  <span className="block text-[14.5px] font-medium text-ink">
+                    {tool.name}
+                  </span>
+                  <span className="block truncate text-[13px] text-ink-soft">
+                    {tool.description}
+                  </span>
+                </span>
+                <Arrow />
+              </Link>
+            ))}
+          </div>
+        </section>
+
+        {/* Full index by category */}
+        <div className="mt-16 space-y-14">
+          {categories.map((category) => {
+            const list = getToolsByCategory(category.id);
+            return (
+              <section key={category.id} aria-labelledby={`cat-${category.id}`}>
+                <div className="mb-4 flex items-baseline justify-between gap-4 border-b border-border pb-3">
+                  <div>
+                    <h2
+                      id={`cat-${category.id}`}
+                      className="text-[11px] font-semibold uppercase tracking-[0.1em] text-faint"
+                    >
+                      {category.title}
+                    </h2>
+                    <p className="mt-1.5 max-w-[52ch] text-[13.5px] text-ink-soft">
+                      {category.description}
+                    </p>
+                  </div>
+                  <Link
+                    href={`/tools/${category.slug}`}
+                    className="group hidden shrink-0 items-center gap-1 text-[13px] font-medium text-ink-soft transition-colors hover:text-[var(--accent)] sm:flex"
+                  >
+                    View all
+                    <Arrow />
+                  </Link>
+                </div>
+                <div className="grid gap-x-6 sm:grid-cols-2">
+                  {list.map((tool) => (
+                    <ToolListRow key={tool.slug} tool={tool} />
+                  ))}
+                </div>
+              </section>
+            );
+          })}
+        </div>
+      </Container>
+    </>
   );
 }

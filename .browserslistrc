@@ -1,0 +1,8 @@
+# Target modern browsers so Next doesn't ship legacy polyfills/transforms.
+# Trims dead JavaScript weight for the ~98% of visitors on evergreen browsers.
+chrome >= 111
+edge >= 111
+firefox >= 111
+safari >= 16.4
+ios_saf >= 16.4
+not dead
