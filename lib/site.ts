@@ -8,8 +8,10 @@ export const site = {
   tagline: "Small tools. Big time savings.",
   description:
     "Fast, private, free browser tools for the everyday things you need to get done. No accounts, no clutter — most tools run entirely on your device.",
-  url:
-    (process.env.NEXT_PUBLIC_SITE_URL || "https://nib.tools").replace(/\/$/, ""),
+  url: (process.env.NEXT_PUBLIC_SITE_URL || "https://nibtools.com").replace(
+    /\/$/,
+    "",
+  ),
   locale: "en_US",
   twitter: "@nibtools",
   /** AdSense publisher id — kept here so ads.txt + the loader agree. */
