@@ -50,11 +50,13 @@ export function HeroSearchField() {
       type="button"
       onClick={open}
       className="group flex h-14 w-full items-center gap-3 rounded-[var(--radius-md)] border border-border-strong bg-surface px-4 text-left shadow-[var(--shadow-sm)] transition-colors hover:border-[var(--faint)]"
-      aria-label="Search every tool"
     >
       <SearchIcon className="text-faint transition-colors group-hover:text-ink-soft" />
-      <span className="flex-1 text-[15px] text-faint">Search every tool…</span>
-      <kbd className="flex items-center gap-0.5 rounded-[var(--radius-sm)] border border-border bg-surface-inset px-2 py-1 font-mono text-[12px] text-ink-soft">
+      <span className="flex-1 text-[15px] text-faint">Search every tool</span>
+      <kbd
+        aria-hidden="true"
+        className="flex items-center gap-0.5 rounded-[var(--radius-sm)] border border-border bg-surface-inset px-2 py-1 font-mono text-[12px] text-ink-soft"
+      >
         {meta} K
       </kbd>
     </button>
