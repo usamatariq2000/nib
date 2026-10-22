@@ -189,6 +189,202 @@ export const tools: Tool[] = [
     },
   },
 
+  // ─────────────────────────────── Finance ───────────────────────────────
+  {
+    slug: "mortgage-calculator",
+    name: "Mortgage Calculator",
+    description: "Estimate your monthly mortgage payment.",
+    tagline:
+      "Estimate your monthly mortgage payment — principal, interest, taxes and insurance — and see the total cost over the life of the loan.",
+    category: "finance",
+    keywords: ["mortgage", "home loan", "monthly payment", "amortization", "piti", "interest", "property"],
+    icon: "home",
+    popular: true,
+    local: true,
+    related: ["loan-calculator", "compound-interest-calculator", "percentage-calculator", "discount-calculator"],
+    content: {
+      what: "Enter a home price, down payment, interest rate and term to estimate your monthly mortgage payment. The breakdown separates principal and interest from optional property tax, home insurance and HOA fees, and shows how much interest you'll pay over the full loan.",
+      how: [
+        "Enter the home price and your down payment.",
+        "Set the loan term and interest rate.",
+        "Optionally add property tax, insurance and HOA to see your full monthly payment.",
+      ],
+      examples: [
+        "$400,000 home, 20% down, 30 years at 6.5% ≈ $2,022/mo principal & interest",
+        "See how much total interest a 15-year vs 30-year term costs",
+      ],
+      faqs: [
+        {
+          q: "What does PITI mean?",
+          a: "PITI stands for Principal, Interest, Taxes and Insurance — the four parts of a typical monthly mortgage payment. This calculator shows each part so you see your true monthly cost, not just principal and interest.",
+        },
+        {
+          q: "How is the monthly mortgage payment calculated?",
+          a: "Principal and interest use the standard amortization formula: M = P × r(1+r)ⁿ ÷ ((1+r)ⁿ − 1), where P is the loan amount, r is the monthly interest rate, and n is the number of payments. Taxes and insurance are added on top.",
+        },
+        {
+          q: "Does a bigger down payment lower my payment?",
+          a: "Yes. A larger down payment reduces the loan amount, which lowers both the monthly payment and the total interest paid. Putting at least 20% down also typically avoids private mortgage insurance (PMI).",
+        },
+      ],
+    },
+  },
+  {
+    slug: "loan-calculator",
+    name: "Loan Calculator",
+    description: "Calculate loan payments and total interest.",
+    tagline:
+      "Work out the monthly payment, total interest and total cost of any fixed-rate loan — personal, auto or student.",
+    category: "finance",
+    keywords: ["loan", "monthly payment", "interest", "auto loan", "car loan", "personal loan", "amortization", "emi"],
+    icon: "bank",
+    popular: true,
+    local: true,
+    related: ["mortgage-calculator", "compound-interest-calculator", "percentage-calculator", "sales-tax-calculator"],
+    content: {
+      what: "Enter a loan amount, interest rate and term to see your fixed monthly payment, the total interest you'll pay, and the total amount repaid. Works for car loans, personal loans, student loans and any other amortizing fixed-rate loan.",
+      how: [
+        "Enter the loan amount.",
+        "Set the annual interest rate and the term in months or years.",
+        "Read your monthly payment, total interest and total repaid.",
+      ],
+      examples: [
+        "$25,000 car loan over 5 years at 7% ≈ $495/mo",
+        "$10,000 personal loan over 3 years at 10% ≈ $323/mo",
+      ],
+      faqs: [
+        {
+          q: "How is a monthly loan payment calculated?",
+          a: "It uses the amortization formula: M = P × r(1+r)ⁿ ÷ ((1+r)ⁿ − 1), where P is the loan amount, r is the monthly rate (annual rate ÷ 12), and n is the number of monthly payments. Each payment covers that month's interest plus a bit of principal.",
+        },
+        {
+          q: "What is the difference between interest rate and APR?",
+          a: "The interest rate is the cost of borrowing the principal. APR (annual percentage rate) also includes certain fees, so it's usually slightly higher and gives a fuller picture of the loan's cost. This tool uses the interest rate.",
+        },
+        {
+          q: "Will paying extra each month save money?",
+          a: "Yes. Extra payments go straight to principal, which reduces the balance faster and cuts the total interest you pay — often by a surprising amount over the life of the loan.",
+        },
+      ],
+    },
+  },
+  {
+    slug: "compound-interest-calculator",
+    name: "Compound Interest Calculator",
+    description: "See how savings grow over time.",
+    tagline:
+      "See how an investment or savings balance grows with compound interest and regular contributions over time.",
+    category: "finance",
+    keywords: ["compound interest", "savings", "investment", "interest", "growth", "apy", "future value", "retirement"],
+    icon: "growth",
+    popular: true,
+    local: true,
+    related: ["loan-calculator", "mortgage-calculator", "percentage-calculator", "sales-tax-calculator"],
+    content: {
+      what: "Enter a starting amount, interest rate and time period to see how compound interest grows your balance. Add a regular monthly contribution to model a savings plan, and see how much of the final total is your own money versus earned interest.",
+      how: [
+        "Enter your starting balance and an optional monthly contribution.",
+        "Set the annual interest rate and how often it compounds.",
+        "Choose the number of years and read the projected final balance.",
+      ],
+      examples: [
+        "$10,000 at 7% for 20 years grows to about $38,697",
+        "Adding $200/month makes a large difference over time",
+      ],
+      faqs: [
+        {
+          q: "What is compound interest?",
+          a: "Compound interest is interest earned on both your original balance and the interest already added. Because each period's interest earns its own interest, balances grow faster over time — the core reason long-term investing is powerful.",
+        },
+        {
+          q: "How does compounding frequency affect growth?",
+          a: "More frequent compounding (monthly or daily vs annually) earns slightly more, because interest is added to the balance sooner and starts earning on itself. The difference is modest but real over long periods.",
+        },
+        {
+          q: "What is APY?",
+          a: "APY (annual percentage yield) is the effective yearly return once compounding is included. A 6% rate compounded monthly has an APY of about 6.17%, which is why APY is the fairer way to compare savings accounts.",
+        },
+      ],
+    },
+  },
+  {
+    slug: "tip-calculator",
+    name: "Tip Calculator",
+    description: "Calculate tips and split the bill.",
+    tagline:
+      "Work out the tip and total in seconds, and split the bill evenly across any number of people.",
+    category: "finance",
+    keywords: ["tip", "gratuity", "bill", "split", "restaurant", "percentage", "per person"],
+    icon: "receipt",
+    popular: true,
+    local: true,
+    related: ["sales-tax-calculator", "discount-calculator", "percentage-calculator", "loan-calculator"],
+    content: {
+      what: "Enter your bill amount and a tip percentage to see the tip and the total instantly. Split the bill across any number of people to get the amount each person owes, tip included.",
+      how: [
+        "Enter the bill amount.",
+        "Choose a tip percentage or type your own.",
+        "Set how many people are splitting to see the per-person amount.",
+      ],
+      examples: [
+        "$80 bill at 18% = $14.40 tip, $94.40 total",
+        "Split $94.40 between 4 people = $23.60 each",
+      ],
+      faqs: [
+        {
+          q: "How much should I tip?",
+          a: "In the US, 15–20% of the pre-tax bill is customary for table service, with 20% for good service. Norms vary by country and service type, so adjust to your local custom.",
+        },
+        {
+          q: "Should I tip on the pre-tax or post-tax amount?",
+          a: "Tipping on the pre-tax subtotal is standard, though many people tip on the total for simplicity. Enter whichever amount you prefer as the bill.",
+        },
+        {
+          q: "How is the per-person amount calculated?",
+          a: "The tool adds the tip to the bill, then divides the total by the number of people — so each share already includes an equal part of the tip.",
+        },
+      ],
+    },
+  },
+  {
+    slug: "sales-tax-calculator",
+    name: "Sales Tax Calculator",
+    description: "Add or remove sales tax from a price.",
+    tagline:
+      "Add sales tax to a price or work backwards from a total to find the pre-tax amount and the tax paid.",
+    category: "finance",
+    keywords: ["sales tax", "vat", "gst", "tax", "price", "net", "gross", "reverse tax"],
+    icon: "receipt",
+    local: true,
+    related: ["tip-calculator", "discount-calculator", "percentage-calculator", "loan-calculator"],
+    content: {
+      what: "Enter a price and a tax rate to see the sales tax and the final total. Switch to reverse mode to start from a tax-inclusive total and find the original pre-tax price and the tax portion — useful for receipts and bookkeeping.",
+      how: [
+        "Enter the amount (pre-tax price, or a tax-inclusive total in reverse mode).",
+        "Enter the sales tax rate as a percentage.",
+        "Read the tax amount and the total, or the pre-tax price in reverse mode.",
+      ],
+      examples: [
+        "$100 at 8% tax = $8 tax, $108 total",
+        "Reverse: $108 total at 8% = $100 before tax",
+      ],
+      faqs: [
+        {
+          q: "How do I add sales tax to a price?",
+          a: "Multiply the price by the tax rate to get the tax, then add it. $100 × 8% = $8 tax, for a $108 total. The calculator does this instantly.",
+        },
+        {
+          q: "How do I calculate the pre-tax price from a total?",
+          a: "Divide the tax-inclusive total by 1 plus the tax rate. $108 ÷ 1.08 = $100 before tax. Reverse mode does this for you and shows the tax portion.",
+        },
+        {
+          q: "Does this work for VAT and GST?",
+          a: "Yes. The math is the same for any single-rate sales tax, VAT or GST — just enter your local rate.",
+        },
+      ],
+    },
+  },
+
   // ─────────────────────────────── Developer ───────────────────────────────
   {
     slug: "json-formatter",

@@ -1,5 +1,5 @@
 /** Category ids used to group tools. */
-export type CategoryId = "calculate" | "develop" | "write" | "time";
+export type CategoryId = "calculate" | "finance" | "develop" | "write" | "time";
 
 export interface Category {
   id: CategoryId;

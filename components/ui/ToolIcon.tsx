@@ -5,6 +5,37 @@ import type { SVGProps } from "react";
  * keyed by the `icon` field in the registry. Stroke-based, inherits color.
  */
 const glyphs: Record<string, React.ReactNode> = {
+  home: (
+    <>
+      <path d="M3.5 9.5 10 4l6.5 5.5" />
+      <path d="M5 8.5v7.5h10V8.5" />
+      <rect x="8.5" y="11.5" width="3" height="4.5" />
+    </>
+  ),
+  bank: (
+    <>
+      <path d="M3.5 7.5 10 4l6.5 3.5" />
+      <line x1="3.5" y1="7.5" x2="16.5" y2="7.5" />
+      <line x1="5.5" y1="9" x2="5.5" y2="14" />
+      <line x1="8.5" y1="9" x2="8.5" y2="14" />
+      <line x1="11.5" y1="9" x2="11.5" y2="14" />
+      <line x1="14.5" y1="9" x2="14.5" y2="14" />
+      <line x1="4" y1="16" x2="16" y2="16" />
+    </>
+  ),
+  growth: (
+    <>
+      <path d="M3.5 14 8 9.5l2.5 2.5L16.5 6" />
+      <path d="M12.5 6h4v4" />
+    </>
+  ),
+  receipt: (
+    <>
+      <path d="M5 3.5h10v13l-2-1.2-2 1.2-2-1.2-2 1.2-2-1.2V3.5Z" />
+      <line x1="7.5" y1="7" x2="12.5" y2="7" />
+      <line x1="7.5" y1="10" x2="12.5" y2="10" />
+    </>
+  ),
   percent: (
     <>
       <line x1="5" y1="15" x2="15" y2="5" />
