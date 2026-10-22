@@ -50,18 +50,17 @@ export interface TimerPreset {
 
 function timerLabel(s: number): { slug: string; label: string; title: string } {
   if (s < 60) {
-    return { slug: `${s}-seconds`, label: `${s} seconds`, title: `${s} Second Timer` };
+    const p = s === 1 ? "" : "s";
+    return { slug: `${s}-second${p}`, label: `${s} second${p}`, title: `${s} Second Timer` };
   }
   if (s % 3600 === 0) {
     const h = s / 3600;
-    return {
-      slug: `${h}-hour${h > 1 ? "s" : ""}`,
-      label: `${h} hour${h > 1 ? "s" : ""}`,
-      title: `${h} Hour Timer`,
-    };
+    const p = h === 1 ? "" : "s";
+    return { slug: `${h}-hour${p}`, label: `${h} hour${p}`, title: `${h} Hour Timer` };
   }
   const m = s / 60;
-  return { slug: `${m}-minutes`, label: `${m} minutes`, title: `${m} Minute Timer` };
+  const p = m === 1 ? "" : "s";
+  return { slug: `${m}-minute${p}`, label: `${m} minute${p}`, title: `${m} Minute Timer` };
 }
 
 export const timerPresets: TimerPreset[] = TIMER_SECONDS.map((s) => {
