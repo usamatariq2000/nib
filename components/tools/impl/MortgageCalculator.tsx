@@ -4,7 +4,8 @@ import { useMemo, useState } from "react";
 import { Field, Input } from "@/components/ui/Field";
 import { Workspace } from "@/components/ui/Workspace";
 import { CopyButton } from "@/components/ui/CopyButton";
-import { amortize, money } from "@/lib/finance";
+import { amortize, amortizationByYear, money } from "@/lib/finance";
+import { DonutChart } from "@/components/ui/Charts";
 import { parseNum } from "@/lib/format";
 import { useToolOpen } from "@/lib/useToolOpen";
 
@@ -92,6 +93,7 @@ export function MortgageCalculator() {
       totalInterest,
       totalPaid,
       downPct: p > 0 ? (d / p) * 100 : 0,
+      schedule: amortizationByYear(loan, r, y * 12),
     };
   }, [price, down, years, rate, tax, insurance, hoa]);
 
@@ -169,6 +171,56 @@ export function MortgageCalculator() {
           ) : null}
         </div>
       </div>
+
+      {/* Payment breakdown chart + amortization schedule */}
+      {result ? (
+        <div className="mt-6 grid gap-6 border-t border-border pt-6 lg:grid-cols-2">
+          <div>
+            <p className="mb-3 text-[11px] font-medium uppercase tracking-[0.06em] text-faint">
+              Monthly payment breakdown
+            </p>
+            <DonutChart
+              ariaLabel={`Monthly payment breakdown: principal and interest ${money(result.payment)}, taxes ${money(result.monthlyTax)}, insurance ${money(result.monthlyIns)}`}
+              centerLabel="per month"
+              centerValue={money(result.monthlyTotal, 0)}
+              segments={[
+                { label: "Principal & interest", value: result.payment, color: "var(--accent)" },
+                { label: "Property tax", value: result.monthlyTax, color: "var(--ink-soft)" },
+                { label: "Insurance", value: result.monthlyIns, color: "var(--border-strong)" },
+                { label: "HOA", value: result.monthlyHoa, color: "var(--faint)" },
+              ]}
+            />
+          </div>
+
+          <div>
+            <p className="mb-3 text-[11px] font-medium uppercase tracking-[0.06em] text-faint">
+              Amortization schedule (yearly)
+            </p>
+            <div className="scroll-thin max-h-[220px] overflow-y-auto rounded-[var(--radius-md)] border border-border">
+              <table className="w-full text-[12.5px]">
+                <thead className="sticky top-0 bg-surface-inset text-faint">
+                  <tr className="text-left">
+                    <th className="px-3 py-1.5 font-medium">Yr</th>
+                    <th className="px-3 py-1.5 text-right font-medium">Principal</th>
+                    <th className="px-3 py-1.5 text-right font-medium">Interest</th>
+                    <th className="px-3 py-1.5 text-right font-medium">Balance</th>
+                  </tr>
+                </thead>
+                <tbody className="tabular">
+                  {result.schedule.map((yr) => (
+                    <tr key={yr.year} className="border-t border-border">
+                      <td className="px-3 py-1.5 text-ink-soft">{yr.year}</td>
+                      <td className="px-3 py-1.5 text-right text-ink">{money(yr.principalPaid, 0)}</td>
+                      <td className="px-3 py-1.5 text-right text-ink">{money(yr.interestPaid, 0)}</td>
+                      <td className="px-3 py-1.5 text-right text-ink">{money(yr.balance, 0)}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      ) : null}
     </Workspace>
   );
 }

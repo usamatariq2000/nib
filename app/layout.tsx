@@ -46,6 +46,7 @@ export default function RootLayout({
     >
       <head>
         <ThemeScript />
+        <link rel="alternate" type="text/markdown" href="/index.md" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: jsonLdScript(websiteJsonLd()) }}

@@ -4,7 +4,8 @@ import { useMemo, useState } from "react";
 import { Field, Input, Select } from "@/components/ui/Field";
 import { Workspace } from "@/components/ui/Workspace";
 import { CopyButton } from "@/components/ui/CopyButton";
-import { compoundGrowth, money } from "@/lib/finance";
+import { compoundGrowth, compoundByYear, money } from "@/lib/finance";
+import { GrowthAreaChart } from "@/components/ui/Charts";
 import { parseNum } from "@/lib/format";
 import { useToolOpen } from "@/lib/useToolOpen";
 
@@ -61,7 +62,8 @@ export function CompoundInterestCalculator() {
     if (r === null || y === null || y <= 0 || (p <= 0 && c <= 0)) return null;
     const g = compoundGrowth(p, r, y, n, c);
     const contribPct = g.futureValue > 0 ? (g.totalContributions / g.futureValue) * 100 : 0;
-    return { ...g, contribPct };
+    const series = compoundByYear(p, r, y, n, c);
+    return { ...g, contribPct, series, years: y };
   }, [principal, contribution, rate, years, freq]);
 
   return (
@@ -120,6 +122,20 @@ export function CompoundInterestCalculator() {
           ) : null}
         </div>
       </div>
+
+      {/* Growth-over-time chart */}
+      {result ? (
+        <div className="mt-6 border-t border-border pt-6">
+          <p className="mb-3 text-[11px] font-medium uppercase tracking-[0.06em] text-faint">
+            Balance over time
+          </p>
+          <GrowthAreaChart
+            data={result.series}
+            ariaLabel={`Balance grows to ${money(result.futureValue, 0)} over ${Math.round(result.years)} years, of which ${money(result.totalContributions, 0)} is contributions and ${money(result.totalInterest, 0)} is interest`}
+            xLabel={`${Math.round(result.years)} years`}
+          />
+        </div>
+      ) : null}
     </Workspace>
   );
 }

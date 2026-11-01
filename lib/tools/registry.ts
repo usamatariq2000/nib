@@ -75,6 +75,8 @@ export const tools: Tool[] = [
         "Leave the second date as today, or set it to calculate age on a specific day.",
         "Read the exact age and the extra totals below it.",
       ],
+      method:
+        "The exact age is counted the way you'd say it out loud: whole years first, then whole months, then the remaining days — borrowing days from the previous month's length and months from a year when needed. Leap years and months of different lengths are handled, so February 29 birthdays and the totals in weeks, days and hours stay accurate.",
       examples: [
         "Born 1990-06-15, today: 35 years, 3 months, 15 days",
         "Total days lived shown alongside weeks and months",
@@ -113,6 +115,8 @@ export const tools: Tool[] = [
         "To solve a proportion, fill any three of the four boxes and leave the unknown blank.",
         "Results, including the decimal equivalent, update as you type.",
       ],
+      method:
+        "To simplify, both sides are divided by their greatest common divisor (GCD), reducing a ratio like 1920:1080 to 16:9; decimals are scaled to whole numbers first. To solve a proportion A:B = C:D, the tool cross-multiplies — the missing value equals the product of the diagonal pair divided by the known adjacent value.",
       examples: [
         "1920:1080 simplifies to 16:9",
         "3:4 = 9:? solves to 12",
@@ -148,6 +152,8 @@ export const tools: Tool[] = [
         "Enter the discount as a percentage (or switch to a fixed amount).",
         "Read the amount saved and the final price instantly.",
       ],
+      method:
+        "For a percentage discount, the saving is price × (discount ÷ 100) and the final price is price − saving. For a fixed amount off, the saving is subtracted directly. The effective percentage off is always saving ÷ original price × 100, which is handy for comparing deals.",
       examples: [
         "$80 with 25% off = $60 (you save $20)",
         "$120 down to $90 is 25% off",
@@ -182,6 +188,8 @@ export const tools: Tool[] = [
         "Choose the end date.",
         "Read the breakdown and the total counts, including business days.",
       ],
+      method:
+        "The gap is measured from the earlier date to the later one. The years-months-days breakdown counts whole years, then months, then remaining days, accounting for month lengths and leap years. Total days come from the raw time difference; business days count Monday–Friday only and skip weekends (public holidays vary by country, so they aren't subtracted).",
       examples: [
         "Jan 1 to Dec 31, 2025 = 364 days",
         "Business days between two dates, weekends excluded",

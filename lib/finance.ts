@@ -38,10 +38,74 @@ export function amortize(
   };
 }
 
+export interface AmortYear {
+  year: number;
+  interestPaid: number;
+  principalPaid: number;
+  balance: number;
+}
+
+/** Year-by-year amortization summary for a fixed-rate loan. */
+export function amortizationByYear(
+  principal: number,
+  annualRatePct: number,
+  months: number,
+): AmortYear[] {
+  const payment = monthlyPayment(principal, annualRatePct, months);
+  const r = annualRatePct / 100 / 12;
+  let balance = principal;
+  const years: AmortYear[] = [];
+  let yInterest = 0;
+  let yPrincipal = 0;
+
+  for (let m = 1; m <= months; m++) {
+    const interest = balance * r;
+    const principalPart = Math.min(payment - interest, balance);
+    balance = Math.max(0, balance - principalPart);
+    yInterest += interest;
+    yPrincipal += principalPart;
+    if (m % 12 === 0 || m === months) {
+      years.push({
+        year: Math.ceil(m / 12),
+        interestPaid: yInterest,
+        principalPaid: yPrincipal,
+        balance,
+      });
+      yInterest = 0;
+      yPrincipal = 0;
+    }
+  }
+  return years;
+}
+
 export interface CompoundResult {
   futureValue: number;
   totalContributions: number;
   totalInterest: number;
+}
+
+export interface GrowthYear {
+  x: number;
+  contributions: number;
+  total: number;
+}
+
+/** Year-by-year balance vs. contributions, for charting compound growth. */
+export function compoundByYear(
+  principal: number,
+  annualRatePct: number,
+  years: number,
+  compoundsPerYear: number,
+  monthlyContribution = 0,
+): GrowthYear[] {
+  const out: GrowthYear[] = [
+    { x: 0, contributions: principal, total: principal },
+  ];
+  for (let y = 1; y <= Math.max(1, Math.round(years)); y++) {
+    const g = compoundGrowth(principal, annualRatePct, y, compoundsPerYear, monthlyContribution);
+    out.push({ x: y, contributions: g.totalContributions, total: g.futureValue });
+  }
+  return out;
 }
 
 /**
