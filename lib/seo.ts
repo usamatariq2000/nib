@@ -129,6 +129,11 @@ export function categoryMetadata(category: Category): Metadata {
         },
       ],
     },
+    twitter: {
+      card: "summary_large_image",
+      title: `${category.title} — ${site.name}`,
+      description: category.description,
+    },
   };
 }
 
@@ -147,7 +152,13 @@ export function websiteJsonLd() {
         "@type": "EntryPoint",
         urlTemplate: `${site.url}/?q={search_term_string}`,
       },
-      "query-input": "required name=search_term_string",
+      // Object form per Google's current Sitelinks Searchbox spec (the legacy
+      // string form "required name=..." is deprecated).
+      "query-input": {
+        "@type": "PropertyValueSpecification",
+        valueRequired: true,
+        valueName: "search_term_string",
+      },
     },
   };
 }
@@ -158,7 +169,15 @@ export function organizationJsonLd() {
     "@type": "Organization",
     name: site.name,
     url: site.url,
-    logo: `${site.url}/icon.svg`,
+    description: site.description,
+    // Raster logo (PNG) — Google ignores SVG logos for Knowledge Panel.
+    logo: {
+      "@type": "ImageObject",
+      url: `${site.url}/apple-icon`,
+      width: 180,
+      height: 180,
+    },
+    sameAs: [] as string[],
   };
 }
 
@@ -186,7 +205,6 @@ export function toolJsonLd(tool: Tool) {
     applicationCategory: "UtilitiesApplication",
     operatingSystem: "Any (web browser)",
     browserRequirements: "Requires JavaScript",
-    featureList: tool.keywords,
     softwareVersion: "1.0",
     datePublished: SITE_PUBLISHED,
     dateModified: SITE_MODIFIED,
@@ -194,23 +212,6 @@ export function toolJsonLd(tool: Tool) {
     offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
     isAccessibleForFree: true,
     publisher: { "@type": "Organization", name: site.name, url: site.url },
-  };
-}
-
-/** HowTo structured data built from a tool's "how to use it" steps. */
-export function howToJsonLd(tool: Tool) {
-  return {
-    "@context": "https://schema.org",
-    "@type": "HowTo",
-    name: `How to use the ${tool.name}`,
-    description: tool.tagline,
-    step: tool.content.how.map((text, i) => ({
-      "@type": "HowToStep",
-      position: i + 1,
-      name: `Step ${i + 1}`,
-      text,
-    })),
-    totalTime: "PT1M",
   };
 }
 

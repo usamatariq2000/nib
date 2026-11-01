@@ -11,7 +11,6 @@ import {
   breadcrumbJsonLd,
   toolJsonLd,
   faqJsonLd,
-  howToJsonLd,
   jsonLdScript,
 } from "@/lib/seo";
 
@@ -68,10 +67,6 @@ export function ToolPageLayout({
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: jsonLdScript(faqJsonLd(tool)) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: jsonLdScript(howToJsonLd(tool)) }}
       />
 
       <Container className="pb-10 pt-6 sm:pt-8">

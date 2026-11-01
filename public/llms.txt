@@ -1,0 +1,45 @@
+# Nib
+
+> Nib (nibtools.com) is a collection of fast, free, privacy-friendly browser
+> tools for everyday tasks. Most tools run entirely in the user's browser, so
+> the data entered is never uploaded. No accounts, no paywall.
+
+## Calculators
+- [Percentage Calculator](https://nibtools.com/percentage-calculator): Percentages, percentage change, increase and decrease.
+- [Age Calculator](https://nibtools.com/age-calculator): Exact age in years, months and days from a birth date.
+- [Ratio Calculator](https://nibtools.com/ratio-calculator): Simplify, scale and solve ratios.
+- [Discount Calculator](https://nibtools.com/discount-calculator): Sale prices and savings.
+- [Date Difference Calculator](https://nibtools.com/date-difference-calculator): Days, weeks and months between two dates.
+
+## Finance
+- [Mortgage Calculator](https://nibtools.com/mortgage-calculator): Monthly mortgage payment (principal, interest, taxes, insurance) and total cost.
+- [Loan Calculator](https://nibtools.com/loan-calculator): Monthly payment and total interest for any fixed-rate loan.
+- [Compound Interest Calculator](https://nibtools.com/compound-interest-calculator): How savings grow with compound interest and contributions.
+- [Tip Calculator](https://nibtools.com/tip-calculator): Tip amount, total and per-person split.
+- [Sales Tax Calculator](https://nibtools.com/sales-tax-calculator): Add or remove sales tax from a price.
+
+## Developer Tools
+- [JSON Formatter](https://nibtools.com/json-formatter): Format, validate and minify JSON in the browser.
+- [UUID Generator](https://nibtools.com/uuid-generator): Generate v4 and v7 UUIDs.
+- [Base64 Encoder / Decoder](https://nibtools.com/base64-encoder): Encode and decode Base64 text.
+- [URL Encoder / Decoder](https://nibtools.com/url-encoder): Percent-encode and decode URLs.
+- [Unix Timestamp Converter](https://nibtools.com/timestamp-converter): Convert between Unix timestamps and dates.
+
+## Text Tools
+- [Word Counter](https://nibtools.com/word-counter): Count words, characters, sentences and reading time.
+- [Character Counter](https://nibtools.com/character-counter): Count characters against common limits.
+- [Text Case Converter](https://nibtools.com/case-converter): Convert text between letter cases.
+- [Text Diff](https://nibtools.com/text-diff): Compare two texts and highlight changes.
+- [Remove Duplicate Lines](https://nibtools.com/remove-duplicate-lines): Delete duplicate lines from a list.
+
+## Time & Random
+- [Random Number Generator](https://nibtools.com/random-number-generator): Random numbers in a range.
+- [Coin Flip](https://nibtools.com/coin-flip): Flip a fair virtual coin.
+- [Dice Roller](https://nibtools.com/dice-roller): Roll dice with any number of sides.
+- [Online Timer](https://nibtools.com/timer): Countdown timer with presets and an alarm.
+- [Stopwatch](https://nibtools.com/stopwatch): Precise stopwatch with lap times.
+
+## About
+- [About Nib](https://nibtools.com/about): What Nib is and the thinking behind it.
+- [All Tools](https://nibtools.com/tools): Full index of every tool.
+- [Privacy](https://nibtools.com/privacy): How Nib handles data (most tools run on-device).

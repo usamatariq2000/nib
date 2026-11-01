@@ -6,10 +6,24 @@ import { ToolListRow } from "@/components/tools/ToolListRow";
 import { categories } from "@/lib/tools/categories";
 import { getToolsByCategory, tools } from "@/lib/tools/registry";
 
+const toolsDescription = `Browse all ${tools.length} free browser tools — calculators, developer utilities, text tools, timers and random generators.`;
+
 export const metadata: Metadata = {
   title: "All Tools",
-  description: `Browse all ${tools.length} free browser tools — calculators, developer utilities, text tools, timers and random generators.`,
+  description: toolsDescription,
   alternates: { canonical: "/tools" },
+  openGraph: {
+    type: "website",
+    siteName: "Nib",
+    title: "All Tools — Nib",
+    description: toolsDescription,
+    url: "/tools",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "All Tools — Nib",
+    description: toolsDescription,
+  },
 };
 
 export default function ToolsIndexPage() {
