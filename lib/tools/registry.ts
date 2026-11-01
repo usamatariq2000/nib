@@ -26,6 +26,8 @@ export const tools: Tool[] = [
         "Type your two numbers into the fields.",
         "The result updates instantly as you type — no button required.",
       ],
+      method:
+        "Each mode uses a simple formula: 'percent of' is (X ÷ 100) × Y; 'X is what percent of Y' is (X ÷ Y) × 100; and 'percentage change' is ((new − old) ÷ |old|) × 100. Calculations run in your browser at full precision, with the displayed result rounded for readability.",
       examples: [
         "25% of 400 = 100",
         "45 is 30% of 150",
@@ -39,6 +41,14 @@ export const tools: Tool[] = [
         {
           q: "What is the difference between percentage change and percentage points?",
           a: "Percentage change is relative: going from 10% to 15% is a 50% increase. Percentage points are absolute: that same move is a 5 percentage-point increase. This tool reports relative percentage change.",
+        },
+        {
+          q: "How do I calculate a percentage increase or decrease?",
+          a: "Use the 'percentage change' mode: it takes the difference between the new and old values, divides by the original, and multiplies by 100. A positive result is an increase, a negative one is a decrease. For example, 80 to 100 is a 25% increase; 100 to 80 is a 20% decrease.",
+        },
+        {
+          q: "How do I work out a percent-off discount?",
+          a: "Multiply the price by the percentage to get the amount off, then subtract. 25% off $80 is $80 × 0.25 = $20 off, leaving $60. The discount calculator does this for you, including the final price.",
         },
         {
           q: "Does the calculator round the result?",
@@ -209,6 +219,8 @@ export const tools: Tool[] = [
         "Set the loan term and interest rate.",
         "Optionally add property tax, insurance and HOA to see your full monthly payment.",
       ],
+      method:
+        "Monthly principal and interest use the standard amortization formula M = P × r(1 + r)ⁿ ÷ ((1 + r)ⁿ − 1), where P is the loan amount (home price minus down payment), r is the monthly interest rate (annual rate ÷ 12), and n is the number of monthly payments (years × 12). Property tax, home insurance and HOA are divided into monthly amounts and added on top to give the full payment. Figures are estimates for planning — your lender's exact quote may differ.",
       examples: [
         "$400,000 home, 20% down, 30 years at 6.5% ≈ $2,022/mo principal & interest",
         "See how much total interest a 15-year vs 30-year term costs",
@@ -225,6 +237,18 @@ export const tools: Tool[] = [
         {
           q: "Does a bigger down payment lower my payment?",
           a: "Yes. A larger down payment reduces the loan amount, which lowers both the monthly payment and the total interest paid. Putting at least 20% down also typically avoids private mortgage insurance (PMI).",
+        },
+        {
+          q: "Is a 15-year or 30-year mortgage better?",
+          a: "A 15-year term has higher monthly payments but far less total interest and builds equity faster. A 30-year term has lower, more affordable monthly payments but costs much more interest over time. Enter both terms here to compare the exact numbers for your loan.",
+        },
+        {
+          q: "What is PMI and when do I pay it?",
+          a: "Private mortgage insurance protects the lender when your down payment is under 20%. It's an extra monthly cost, typically 0.3–1.5% of the loan per year, that usually drops off once you reach 20% equity. This estimate doesn't add PMI — include it under insurance if it applies to you.",
+        },
+        {
+          q: "Does this calculator account for extra payments?",
+          a: "This estimate assumes equal monthly payments for the full term. Paying extra toward principal each month shortens the loan and cuts total interest significantly — a dedicated extra-payment calculation is a good next addition.",
         },
       ],
     },
@@ -248,6 +272,8 @@ export const tools: Tool[] = [
         "Set the annual interest rate and the term in months or years.",
         "Read your monthly payment, total interest and total repaid.",
       ],
+      method:
+        "The monthly payment uses the standard amortization formula M = P × r(1 + r)ⁿ ÷ ((1 + r)ⁿ − 1), where P is the loan amount, r is the monthly interest rate (annual rate ÷ 12) and n is the total number of monthly payments. Total repaid is the monthly payment × n, and total interest is that figure minus the original loan amount. The calculation assumes a fixed rate and equal monthly payments.",
       examples: [
         "$25,000 car loan over 5 years at 7% ≈ $495/mo",
         "$10,000 personal loan over 3 years at 10% ≈ $323/mo",
@@ -264,6 +290,14 @@ export const tools: Tool[] = [
         {
           q: "Will paying extra each month save money?",
           a: "Yes. Extra payments go straight to principal, which reduces the balance faster and cuts the total interest you pay — often by a surprising amount over the life of the loan.",
+        },
+        {
+          q: "Does a longer loan term mean lower payments?",
+          a: "Yes, but with a trade-off. A longer term spreads the balance over more months, lowering each payment — but you pay interest for longer, so the total cost is higher. A shorter term costs more per month but far less overall. Compare terms here to see the difference.",
+        },
+        {
+          q: "What's the difference between a secured and unsecured loan?",
+          a: "A secured loan (like an auto loan or mortgage) is backed by collateral, so it usually has a lower rate. An unsecured loan (most personal loans) has no collateral and typically carries a higher rate. The math here is the same for both — just enter the rate you're offered.",
         },
       ],
     },
@@ -287,6 +321,8 @@ export const tools: Tool[] = [
         "Set the annual interest rate and how often it compounds.",
         "Choose the number of years and read the projected final balance.",
       ],
+      method:
+        "The starting balance grows by the compound-interest formula A = P(1 + r/n)^(nt), where P is the principal, r is the annual rate, n is the number of times it compounds per year and t is the number of years. Regular monthly contributions are grown as a future-value annuity and added on top. The result is a projection assuming a constant rate — real investment returns vary year to year.",
       examples: [
         "$10,000 at 7% for 20 years grows to about $38,697",
         "Adding $200/month makes a large difference over time",
@@ -303,6 +339,14 @@ export const tools: Tool[] = [
         {
           q: "What is APY?",
           a: "APY (annual percentage yield) is the effective yearly return once compounding is included. A 6% rate compounded monthly has an APY of about 6.17%, which is why APY is the fairer way to compare savings accounts.",
+        },
+        {
+          q: "What return rate should I assume?",
+          a: "It depends on where the money sits. High-yield savings accounts have ranged roughly 4–5% recently, while a broad stock-market index has averaged about 7% a year after inflation over the long run — but with big year-to-year swings. Use a conservative figure for savings and treat market projections as rough estimates.",
+        },
+        {
+          q: "Why do small monthly contributions matter so much?",
+          a: "Because every contribution compounds for the rest of the time period. Money you add early has the most years to grow, which is why starting sooner — even with small amounts — usually beats contributing more later. Try changing the monthly amount here to see the effect.",
         },
       ],
     },
@@ -326,6 +370,8 @@ export const tools: Tool[] = [
         "Choose a tip percentage or type your own.",
         "Set how many people are splitting to see the per-person amount.",
       ],
+      method:
+        "Tip = bill × (tip percentage ÷ 100). The total is the bill plus the tip, and the per-person amount is that total divided by the number of people, so each share already includes an equal part of the tip.",
       examples: [
         "$80 bill at 18% = $14.40 tip, $94.40 total",
         "Split $94.40 between 4 people = $23.60 each",
@@ -364,6 +410,8 @@ export const tools: Tool[] = [
         "Enter the sales tax rate as a percentage.",
         "Read the tax amount and the total, or the pre-tax price in reverse mode.",
       ],
+      method:
+        "To add tax: tax = price × (rate ÷ 100), and total = price + tax. To remove tax (reverse mode): pre-tax price = total ÷ (1 + rate ÷ 100), and the tax is the difference. The same math applies to any single-rate sales tax, VAT or GST.",
       examples: [
         "$100 at 8% tax = $8 tax, $108 total",
         "Reverse: $108 total at 8% = $100 before tax",
@@ -421,6 +469,18 @@ export const tools: Tool[] = [
         {
           q: "What indentation does it use?",
           a: "Formatting uses two spaces by default, which is the most common convention. You can switch between 2 spaces, 4 spaces and tabs.",
+        },
+        {
+          q: "What is the difference between formatting and minifying JSON?",
+          a: "Formatting (pretty-printing) adds indentation and line breaks so JSON is easy to read and debug. Minifying strips all unnecessary whitespace to make the smallest possible payload for sending over a network or embedding in code. This tool does both.",
+        },
+        {
+          q: "Does formatting change my data?",
+          a: "No. Formatting and minifying only change whitespace — the keys, values, types and structure stay identical. The tool parses your JSON and re-serializes it, so the data is exactly the same, just laid out differently.",
+        },
+        {
+          q: "Can it handle large JSON files?",
+          a: "Yes, within your browser's memory. Because everything runs locally, very large files are limited only by your device rather than an upload size cap — and nothing is sent to a server.",
         },
       ],
     },

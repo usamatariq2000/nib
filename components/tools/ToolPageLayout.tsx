@@ -12,7 +12,14 @@ import {
   toolJsonLd,
   faqJsonLd,
   jsonLdScript,
+  SITE_MODIFIED,
 } from "@/lib/seo";
+import { site } from "@/lib/site";
+
+const REVIEWED_LABEL = new Date(SITE_MODIFIED).toLocaleDateString("en-US", {
+  month: "long",
+  year: "numeric",
+});
 
 const ShieldIcon = () => (
   <svg width="13" height="13" viewBox="0 0 16 16" fill="none" aria-hidden="true">
@@ -129,6 +136,12 @@ export function ToolPageLayout({
               </ol>
             </ContentSection>
 
+            {tool.content.method ? (
+              <ContentSection title="How it's calculated">
+                <p className="leading-relaxed text-ink-soft">{tool.content.method}</p>
+              </ContentSection>
+            ) : null}
+
             {tool.content.examples && tool.content.examples.length > 0 ? (
               <ContentSection title="Examples">
                 <ul className="space-y-2">
@@ -154,6 +167,12 @@ export function ToolPageLayout({
                 ))}
               </dl>
             </ContentSection>
+
+            <p className="border-t border-border pt-5 text-[12.5px] text-faint">
+              {tool.local ? "Runs entirely in your browser. " : ""}
+              Reviewed and maintained by the {site.name} team · Last updated{" "}
+              {REVIEWED_LABEL}.
+            </p>
           </div>
 
           {/* Related tools rail */}

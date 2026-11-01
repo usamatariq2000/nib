@@ -24,6 +24,11 @@ export interface ToolContent {
   what: string;
   /** "How to use it" — a few concise steps. */
   how: string[];
+  /**
+   * Optional "how it's calculated" note — a trust/methodology signal, most
+   * useful on finance/calculation tools (YMYL). Rendered as its own section.
+   */
+  method?: string;
   /** Concrete, real examples relevant to the tool. */
   examples?: string[];
   /** SEO + genuinely useful Q&A. Also emitted as FAQPage structured data. */
